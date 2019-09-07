@@ -67,12 +67,25 @@ const createNewBlock = (data: string): Block => {
     return newBlock;
 }
 
+const getBlockHash = (block: Block): string => Block.calculateBlockHash(
+    block.index,
+    block.previousHash,
+    block.data,
+    block.timestamp
+    )
+
 const isBlockValid = (candidateBlock: Block, previousBlock: Block): boolean => {
     if (!Block.validateStructure(candidateBlock)) return false;
     else if (previousBlock.index + 1 !== candidateBlock.index) return false;
     else if (previousBlock.hash !== candidateBlock.previousHash) return false;
-    // else if //candidateBlock의 hash가 실제로 있는지 확인한다.
+    else if (candidateBlock.hash !== getBlockHash(candidateBlock)) return false;
     return true;
+}
+
+const addBlock = (candidateBlock:Block):void => {
+    if(isBlockValid(candidateBlock, getLatestBlock())) {
+        blockChain.push(candidateBlock)
+    }
 }
 
 export { };
