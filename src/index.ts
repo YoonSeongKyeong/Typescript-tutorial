@@ -15,6 +15,14 @@ class Block {
     ): string =>
         CrypytoJS.SHA256(index + previousHash + data + timestamp.toString())
 
+    static validateStructure = (blockCandidate: Block): boolean
+        =>
+        typeof blockCandidate.index === "number" &&
+        typeof blockCandidate.hash === "string" &&
+        typeof blockCandidate.previousHash === "string" &&
+        typeof blockCandidate.data === "string" &&
+        typeof blockCandidate.timestamp === "number"
+
     constructor(
         index: number,
         hash: string,
@@ -59,6 +67,12 @@ const createNewBlock = (data: string): Block => {
     return newBlock;
 }
 
-console.log(createNewBlock("hello"), createNewBlock("bye bye"))
+const isBlockValid = (candidateBlock: Block, previousBlock: Block): boolean => {
+    if (!Block.validateStructure(candidateBlock)) return false;
+    else if (previousBlock.index + 1 !== candidateBlock.index) return false;
+    else if (previousBlock.hash !== candidateBlock.previousHash) return false;
+    // else if //candidateBlock의 hash가 실제로 있는지 확인한다.
+    return true;
+}
 
 export { };
