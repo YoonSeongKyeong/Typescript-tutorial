@@ -15,13 +15,12 @@ class Block {
     ): string =>
         CrypytoJS.SHA256(index + previousHash + data + timestamp.toString())
 
-    static validateStructure = (blockCandidate: Block): boolean
-        =>
-        typeof blockCandidate.index === "number" &&
-        typeof blockCandidate.hash === "string" &&
-        typeof blockCandidate.previousHash === "string" &&
-        typeof blockCandidate.data === "string" &&
-        typeof blockCandidate.timestamp === "number"
+    static validateStructure = (blockCandidate: Block): boolean => 
+            typeof blockCandidate.index === "number" &&
+            typeof blockCandidate.hash === "string" &&
+            typeof blockCandidate.previousHash === "string" &&
+            typeof blockCandidate.data === "string" &&
+            typeof blockCandidate.timestamp === "number"
 
     constructor(
         index: number,
