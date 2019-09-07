@@ -1,0 +1,19 @@
+{
+  "name": "typechain",
+  "version": "1.0.0",
+  "description": "learning typescript",
+  "main": "index.js",
+  "repository": "https://github.com/YoonSeongKyeong/Typescript-tutorial.git",
+  "author": "mdy6099 <mdy6099@naver.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "tsc-watch --onSuccess \"node dist/index.js\""
+  },
+  "devDependencies": {
+    "tsc-watch": "^3.0.0"
+  },
+  "dependencies": {
+    "global": "^4.4.0",
+    "typescript": "^3.6.2"
+  }
+}
