@@ -13,7 +13,7 @@ class Block {
         data: string,
         timestamp: number
     ): string =>
-        CrypytoJS.SHA256(index + previousHash + data + timestamp.toString())
+        CrypytoJS.SHA256(index + previousHash + data + timestamp.toString()).toString()
 
     static validateStructure = (blockCandidate: Block): boolean => 
             typeof blockCandidate.index === "number" &&
@@ -63,6 +63,7 @@ const createNewBlock = (data: string): Block => {
         previousBlock.hash,
         data,
         nextTimestamp);
+    addBlock(newBlock);// push new Block to blockchain when creating new block
     return newBlock;
 }
 
@@ -87,4 +88,13 @@ const addBlock = (candidateBlock:Block):void => {
     }
 }
 
+// test code area
+
+createNewBlock("secondBlock");
+createNewBlock("thirdBlock");
+createNewBlock("fourthBlock");
+
+console.log(getBlockchain());
+
+// test code area
 export { };
